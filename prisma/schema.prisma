@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Animal{
+  id Int @id @default(autoincrement())
+  nombre String
+  apellido String
+  raza String
+  edad Int
+  peso Int
+  createdAt DateTime @default(now())
+  analisis Analysis[]
+}
+
+model Analysis {
+  id Int @id @default(autoincrement())
+  hematologia String
+  bioquimica String
+  AnalisisDefluidosCorporales String
+  parasitologia String
+  endocrinologia String
+  serologia String
+  estudiosMoleculares String
+  citopatologia String
+  bacteriologia String
+  micologia String
+  toxicologia String
+  orina String
+  otros String
+  createdAt DateTime @default(now())
+  animal Animal @relation(fields: [animalId], references: [id])
+  animalId Int
+}
