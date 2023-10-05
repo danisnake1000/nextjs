@@ -12,8 +12,10 @@ datasource db {
 
 model Animal{
   id Int @id @default(autoincrement())
-  nombre String
-  apellido String
+  nombrePaciente String 
+  nombrePropietario String 
+  nombreVeterinaria String 
+  especie String
   raza String
   edad Int
   peso Int

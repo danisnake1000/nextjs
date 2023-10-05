@@ -1,11 +1,13 @@
 -- CreateTable
 CREATE TABLE "Animal" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "nombre" TEXT NOT NULL,
-    "apellido" TEXT NOT NULL,
+    "nombrePaciente" TEXT NOT NULL,
+    "nombrePropietario" TEXT NOT NULL,
+    "nombreVeterinaria" TEXT NOT NULL,
+    "especie" TEXT NOT NULL,
     "raza" TEXT NOT NULL,
-    "edad" TEXT NOT NULL,
-    "peso" TEXT NOT NULL,
+    "edad" INTEGER NOT NULL,
+    "peso" INTEGER NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
