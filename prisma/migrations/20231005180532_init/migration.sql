@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "Animal" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "nombrePaciente" TEXT NOT NULL,
     "nombrePropietario" TEXT NOT NULL,
     "nombreVeterinaria" TEXT NOT NULL,
@@ -8,12 +8,14 @@ CREATE TABLE "Animal" (
     "raza" TEXT NOT NULL,
     "edad" INTEGER NOT NULL,
     "peso" INTEGER NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Animal_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Analysis" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
     "hematologia" TEXT NOT NULL,
     "bioquimica" TEXT NOT NULL,
     "AnalisisDefluidosCorporales" TEXT NOT NULL,
@@ -27,7 +29,11 @@ CREATE TABLE "Analysis" (
     "toxicologia" TEXT NOT NULL,
     "orina" TEXT NOT NULL,
     "otros" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "animalId" INTEGER NOT NULL,
-    CONSTRAINT "Analysis_animalId_fkey" FOREIGN KEY ("animalId") REFERENCES "Animal" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+
+    CONSTRAINT "Analysis_pkey" PRIMARY KEY ("id")
 );
+
+-- AddForeignKey
+ALTER TABLE "Analysis" ADD CONSTRAINT "Analysis_animalId_fkey" FOREIGN KEY ("animalId") REFERENCES "Animal"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
