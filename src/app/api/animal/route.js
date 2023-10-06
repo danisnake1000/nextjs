@@ -27,7 +27,7 @@ export async function POST(request) {
       especie,
       raza,
       edad,
-      peso,
+      peso
     },
   });
   return NextResponse.json(newAnimal);

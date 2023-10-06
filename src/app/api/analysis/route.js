@@ -36,5 +36,5 @@ export async function POST(request) {
       otros,
     },
   });
-  return NextResponse.json("creando  analysis");
+  return NextResponse.json(" analysis creado");
 }
