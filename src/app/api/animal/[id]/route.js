@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
-import { GET } from "../route";
+
 
 export async function GET(request, { params }) {
   const getAnimalId = await prisma.animal.findUnique({
@@ -21,7 +21,7 @@ export async function PUT(request, { params }) {
   });
   return NextResponse.json(updateAnimal);
 }
-export async function DELETE() {
+export async function DELETE(request, { params }) {
   try {
     const deleteAnimal = await prisma.animal.delete({
       where: {

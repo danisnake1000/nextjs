@@ -1,13 +1,33 @@
+import { prisma } from "@/libs/prisma";
+import { NextResponse } from "next/server";
 
-import { Server } from "@/libs/prisma"
-import { NextResponse } from "next/server"
 
-export function GET() {
-    return NextResponse.json("opteniendo por id analysis")
+export async function GET(request, { params }) {
+  const getAnalysisId = await prisma.analysis.findUnique({
+    where: {
+      id: Number(params.id),
+    },
+  });
+  return NextResponse.json(getAnalysisId);
 }
-export function PUT() {
-    return NextResponse.json("actualizando analysis")
+
+export async function PUT(request, { params }) {
+  const data = await request.json();
+  const updateAnalysis = await prisma.analysis.update({
+    where: {
+      id: Number(params.id),
+    },
+    data: data,
+  });
+
+  return NextResponse.json(updateAnalysis);
 }
-export function DELETE() {
-    return NextResponse.json("borrando analysis")
+export async function DELETE(request, { params }) {
+  const deleteAnalysisId = await prisma.analysis.delete({
+    where: {
+      id: Number(params.id),
+    },
+    
+  });
+  return NextResponse.json(deleteAnalysisId);
 }
