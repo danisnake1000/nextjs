@@ -1,93 +1,32 @@
-"use client";
+
 import React from "react";
+import {prisma} from "@/libs/prisma"
 
-const Analyis = () => {
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const nombrePaciente = e.target.nombrePaciente.value;
-    const nombrePropietario = e.target.nombrePropietario.value;
-    const nombreVeterinaria = e.target.nombreVeterinaria.value;
-    const especie = e.target.especie.value;
-    const raza  = e.target.raza.value;
-    const edad = e.target.edad.value;
-    const peso = e.target.peso.value;
+const listarAnalisis = async() => { 
+  return await prisma.analysis.findMany()
+  
+ }
 
-    const res = await fetch("/api/animal", {
-      method: " POST",
-      body: JSON.stringify({nombrePaciente,
-        nombrePropietario,
-        nombreVeterinaria,
-        especie,
-        raza,
-        edad,
-        peso,}),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await res.json();
-  };
+const Analyis = async() => {
+ 
+  const ana = await listarAnalisis()
+   
+    return(
+      <div>
+        {ana.map(anali => (
+         <div key={anali.id}>{anali.AnalisisDefluidosCorporales} {anali.bacteriologia} {new Date(anali.createdAt).toLocaleDateString()}</div>
+        )
+        )
+        }
+        </div>
+        )
+        
+        }
+        
+      
+    
+    
 
-  return (
-    <div className="h-screen flex justify-center items-center">
-      <form className="bg-slate-800 p-10 w-1/4" onSubmit={onSubmit}>
-        <label htmlFor="animal">Nombre Animal</label>
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="nombrePaciente"
-          id="nombrePaciente"
-        /> 
-        <label htmlFor="animal">Nombre Animal</label>
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="nombrePropietario"
-          id="nombrePropietario"
-        /> 
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="nombreVeterinaria"
-          id="nombreVeterinaria"
-        /> 
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="especie"
-          id="especie"
-        /> 
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="raza"
-          id="raza"
-        /> 
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="edad"
-          id="edad"
-        /> 
-        <input
-          className="bg-gray-400 p-4 mb-10 w-full"
-          type="
-       "
-          name="peso"
-          id="peso"
-        /> 
-        <button className="bg-blue-500 hover:bg-blue-500  rounded text-white font-bold py-2 px-4">
-          crear
-        </button>
-      </form>
-    </div>
-  );
-};
+
 
 export default Analyis;
