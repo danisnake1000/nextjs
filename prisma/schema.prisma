@@ -23,8 +23,8 @@ model Animal{
   nombreVeterinaria String 
   especie String
   raza String
-  edad Int
-  peso Int
+  edad Int?
+  peso Int?
   createdAt DateTime @default(now())
   analisis Analysis[]
 }

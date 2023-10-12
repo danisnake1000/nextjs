@@ -20,7 +20,6 @@ export async function POST(request) {
   } = await request.json();
   const newAnimal = await prisma.animal.create({
     data: {
-  
       nombrePaciente,
       nombrePropietario,
       nombreVeterinaria,
